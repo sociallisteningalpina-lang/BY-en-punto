@@ -1,9 +1,4 @@
 #facebook
-https://www.facebook.com/100064672685926/posts/1303339945165083/
-https://www.facebook.com/100064672685926/posts/1303339985165079/
-https://www.facebook.com/100064672685926/posts/1303302385168839/
-https://www.facebook.com/100064672685926/posts/1303302421835502/
-https://www.facebook.com/100064672685926/posts/1303301991835545/
 https://www.facebook.com/100064672685926/posts/1302481298584281/
 https://www.facebook.com/100064672685926/posts/1302481235250954/
 https://www.facebook.com/100064672685926/posts/1302478275251250/
@@ -21,11 +16,6 @@ https://www.facebook.com/100064672685926/posts/1302481208584290/
 https://www.facebook.com/100064672685926/posts/1304033688429042/
 
 #instagram
-https://www.instagram.com/p/DTydv3jgOuu/
-https://www.instagram.com/p/DTydvKRgI30/
-https://www.instagram.com/p/DTyWJAhALI8/
-https://www.instagram.com/p/DTyWKO2gGf3/
-https://www.instagram.com/p/DTyWEyJAPYA/
 https://www.instagram.com/p/DTv7w2fgB6D/
 https://www.instagram.com/p/DTv7wPwgB0F/
 https://www.instagram.com/p/DTv7kFPAC5g/
@@ -41,4 +31,5 @@ https://www.instagram.com/p/DTv7kViADcy/
 https://www.instagram.com/p/DTv7wzRgFXz/
 https://www.instagram.com/p/DTv7v7QAO57/
 https://www.instagram.com/p/DT0eGykgOCW/
+
 
