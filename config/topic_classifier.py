@@ -4,91 +4,70 @@
 Clasificador de Temas para Comentarios de Campañas
 Personalizable por campaña/producto
 """
-
 import re
 from typing import Callable
 
-
 def create_topic_classifier() -> Callable[[str], str]:
     """
-    Retorna una función de clasificación de temas personalizada para esta campaña.
-    
-    Returns:
-        function: Función que toma un comentario (str) y retorna un tema (str)
-    
-    Usage:
-        classifier = create_topic_classifier()
-        tema = classifier("¿Dónde puedo comprar este producto?")
-        # tema = 'Preguntas sobre el Producto'
+    Retorna una función de clasificación optimizada para la campaña 'La hora del Bon Yurt'.
     """
     
     def classify_topic(comment: str) -> str:
-        """
-        Clasifica un comentario en un tema específico basado en patrones regex.
-        
-        Args:
-            comment: Texto del comentario a clasificar
-            
-        Returns:
-            str: Nombre del tema asignado
-        """
         comment_lower = str(comment).lower()
         
-        # CATEGORÍA 1: Preguntas sobre el Producto
+        # CATEGORÍA 1: Momentos o Deseos de Consumo
+        # Captura antojo, momentos del día (noche, tarde) y deseos inmediatos.
         if re.search(
-            r'\bprecio\b|\bcu[aá]nto vale\b|d[oó]nde|c[oó]mo consigo|'
-            r'duda|pregunta|comprar|tiendas|disponible|sirve para|'
-            r'c[oó]mo se toma|tiene az[uú]car|valor',
+            r'ganas|antojo|quiero|necesito|ya\b|noche|tarde|mañana|'
+            r'hambre|comprar|delicia|antojada|antojado|d[oó]nde lo consigo',
             comment_lower
         ):
-            return 'Preguntas sobre el Producto'
+            return 'Momentos o deseos de consumo'
         
-        # CATEGORÍA 2: Comparación con Kéfir Casero/Artesanal
+        # CATEGORÍA 2: Ingredientes / Salud
+        # Específicamente para temas nutricionales, azúcar y componentes.
         if re.search(
-            r'b[úu]lgaros|n[oó]dulos|en casa|casero|artesanal|'
-            r'preparo yo|vendo el cultivo|hecho por mi',
+            r'az[uú]car|dulce|calor[ií]as|grasa|nutrici[oó]n|salud|'
+            r'qu[ií]micos|ingredientes|fitness|dieta',
             comment_lower
         ):
-            return 'Comparación con Kéfir Casero/Artesanal'
+            return 'Ingredientes / Salud'
         
-        # CATEGORÍA 3: Ingredientes y Salud
+        # CATEGORÍA 3: Reacción a Creatividades y Humor
+        # Para comentarios sobre el estilo del video, la gracia o comparaciones con otros anuncios.
         if re.search(
-            r'aditivos|almid[oó]n|preservantes|lactosa|microbiota|'
-            r'flora intestinal|saludable|bacterias|vivas|gastritis|'
-            r'colon|helicobacter|az[uú]car añadid[oa]s',
+            r'anuncio|comercial|publicidad|gracia|chiste|risa|jsjs|jaja|'
+            r'aguila|cerveza|parece|video|contenido|humor|peccao|ladra',
             comment_lower
         ):
-            return 'Ingredientes y Salud'
-        
-        # CATEGORÍA 4: Competencia y Disponibilidad
+            return 'Reacción a Creatividades / Humor'
+            
+        # CATEGORÍA 4: Opinión General del Producto / Sabor
+        # Feedback directo sobre si les gusta el Bon Yurt en sí.
         if re.search(
-            r'pasco|\b[eé]xito\b|\bara\b|ol[ií]mpica|d1|'
-            r'copia de|no lo venden|no llega|no lo encuentro|no hay en',
-            comment_lower
-        ):
-            return 'Competencia y Disponibilidad'
-        
-        # CATEGORÍA 5: Opinión General del Producto
-        if re.search(
-            r'rico|bueno|excelente|gusta|mejor|delicioso|espectacular|'
-            r'encanta|s[úu]per|feo|horrible|mal[ií]simo|sabe a',
+            r'rico|delicioso|bueno|malo|feo|mejor|favorito|encanta|gusta',
             comment_lower
         ):
             return 'Opinión General del Producto'
         
-        # CATEGORÍA 6: Fuera de Tema / No Relevante
+        # CATEGORÍA 5: Interacciones Cortas / Religiosas / No Relevantes
+        # Limpieza de "Amén", spam o comentarios de 1-2 palabras sin contexto.
         if re.search(
-            r'am[eé]n|jajaja|receta|gracias|bendiciones',
+            r'am[eé]n|bendiciones|gracias|🙏🏼|🙌',
             comment_lower
         ) or len(comment_lower.split()) < 3:
             return 'Fuera de Tema / No Relevante'
         
-        # CATEGORÍA DEFAULT: Otros
+        # CATEGORÍA DEFAULT
         return 'Otros'
     
     return classify_topic
 
-
+# Ejemplo de prueba con tus comentarios:
+classifier = create_topic_classifier()
+print(classifier("que ganas de uno yaaaaa (son las 12 de la noche)")) # -> Momentos o deseos de consumo
+print(classifier("Mera azucar")) # -> Ingredientes / Salud
+print(classifier("Parece un anuncio de aguila jsjsjsjs")) # -> Reacción a Creatividades / Humor
 # ============================================================================
 # METADATA DE LA CAMPAÑA (OPCIONAL)
 # ============================================================================
